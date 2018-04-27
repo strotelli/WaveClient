@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WaveClient
 {
@@ -12,7 +15,7 @@ namespace WaveClient
         /// <summary>
         /// 4 + (8 + SubChunk1Size) + (8 + SubChunk2Size) This is the size of the rest of the chunk following this number.  This is the size of the entire file in bytes minus 8 bytes for the two fields not included in this count: ChunkID and ChunkSize.
         /// </summary>
-        public Int32 Size; 
+        public Int32 Size;
 
         /// <summary>
         /// Contains the letters "WAVE"
@@ -60,7 +63,7 @@ namespace WaveClient
         public Int32 ID;
         public Int32 size;
         public List<Int16> data;
-        
+
     }
     public class WaveFile
 
@@ -108,7 +111,7 @@ namespace WaveClient
         }
         public System.IO.MemoryStream FromData(List<Int16> data)
         {
-            System.IO.MemoryStream memoryStream = null; 
+            System.IO.MemoryStream memoryStream = null;
             WaveFile waveFile = new WaveFile();
             return memoryStream;
         }
