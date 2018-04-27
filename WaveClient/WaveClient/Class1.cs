@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace WaveClient
 {
@@ -48,7 +48,7 @@ namespace WaveClient
         /// <summary>
         /// == NumChannels * BitsPerSample/8 
         /// </summary>
-        public Int16 BlockALign;
+        public Int16 BlockAlign;
         /// <summary>
         /// 8 bits = 8, 16 bits = 16, etc.
         /// </summary>
@@ -59,7 +59,8 @@ namespace WaveClient
     {
         public Int32 ID;
         public Int32 size;
-
+        public List<Int16> data;
+        
     }
     public class WaveFile
 
@@ -85,8 +86,20 @@ namespace WaveClient
             waveFile.riffChunk.Format = binreader.ReadInt32();
             waveFile.riffChunk.Size = binreader.ReadInt32();
             waveFile.formatChunk.ID = binreader.ReadInt32();
-            waveFile.formatChunk.ID
-                #endregion
+            waveFile.formatChunk.Size = binreader.ReadInt32();
+            waveFile.formatChunk.AudioFormat = binreader.ReadInt16();
+            waveFile.formatChunk.NumberOfChannels = binreader.ReadInt16();
+            waveFile.formatChunk.SampleRate = binreader.ReadInt32();
+            waveFile.formatChunk.ByteRate = binreader.ReadInt32();
+            waveFile.formatChunk.BlockAlign = binreader.ReadInt16();
+            waveFile.formatChunk.BitsPerSample = binreader.ReadInt16();
+            waveFile.dataChunk.ID = binreader.ReadInt32();
+            waveFile.dataChunk.size = binreader.ReadInt32();
+            for (int i = 0; i == waveFile.dataChunk.size - 1; i++)
+            {
+                waveFile.dataChunk.data.Add(binreader.ReadInt16());
+            }
+            #endregion
             return waveFile;
 
         }
