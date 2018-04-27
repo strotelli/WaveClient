@@ -66,11 +66,14 @@ namespace WaveClient
 
     }
     public class WaveFile
-
     {
         public RiffChunk riffChunk;
         public FormatChunk formatChunk;
         public DataChunk dataChunk;
+        public void Play()
+        {
+            System.Media.SoundPlayer soundPlayer;
+        }
     }
 
     public class CreateWave
