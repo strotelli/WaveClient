@@ -72,7 +72,11 @@ namespace WaveClient
 
     public class CreateWave
     {
-
+        /// <summary>
+        /// Reads the bytes from the file into an understandable 
+        /// </summary>
+        /// <param name="filepath">Path to the .wav file</param>
+        /// <returns>WaveClient.WaveFile</returns>
         public WaveFile FromFile(string filepath)
         {
             byte[] obj = System.IO.File.ReadAllBytes(filepath);
@@ -101,7 +105,12 @@ namespace WaveClient
             }
             #endregion
             return waveFile;
-
+        }
+        public System.IO.MemoryStream FromData(List<Int16> data)
+        {
+            System.IO.MemoryStream memoryStream = null; 
+            WaveFile waveFile = new WaveFile();
+            return memoryStream;
         }
     }
 
